@@ -1,5 +1,40 @@
 
+def module_plugin(module, lifecycle):
+    if lifecycle == 'module':
+        return "module/wxMeerK40t"
+    elif lifecycle == 'module_opened':
+        pass
+    elif lifecycle == 'module_closed':
+        pass
+    elif lifecycle == 'shutdown':
+        pass
+
+
+def service_plugin(service, lifecycle):
+    if lifecycle == "service":
+        return "provider/device/lhystudios"
+    elif lifecycle == 'init':
+        pass
+    elif lifecycle == 'added':
+        pass
+    elif lifecycle == 'service_attach':
+        pass
+    elif lifecycle == 'assigned':
+        pass
+    elif lifecycle == 'service_detach':
+        pass
+    elif lifecycle == 'shutdown':
+        pass
+
+
 def plugin(kernel, lifecycle):
+    if lifecycle == "plugins":
+        return [service_plugin, module_plugin]
+    if lifecycle == 'init':
+        pass
+    if lifecycle == 'preregister':
+        pass
+
     if lifecycle == 'register':
         """
         Register our changes to meerk40t. These should modify the registered values within meerk40t or install different
@@ -25,12 +60,21 @@ def plugin(kernel, lifecycle):
             command will show up in the extended help for "help example".
             """
             channel(_('Hello World'))
-
+    if lifecycle == 'configure':
+        pass
+    elif lifecycle == 'preboot':
+        pass
     elif lifecycle == 'boot':
         """
         Do some persistent actions or start modules and modifiers. Register any scheduled tasks or threads that need
         to be running for our plugin to work. 
         """
+        pass
+    elif lifecycle == 'prestart':
+        pass
+    elif lifecycle == 'start':
+        pass
+    elif lifecycle == 'poststart':
         pass
     elif lifecycle == 'ready':
         """
@@ -39,11 +83,17 @@ def plugin(kernel, lifecycle):
         work here.
         """
         pass
+    elif lifecycle == 'finished':
+        pass
+    elif lifecycle == 'premain':
+        pass
     elif lifecycle == 'mainloop':
         """
         This is the start of the gui and will capture the default thread as gui thread. If we are writing a new gui
         system and we need this thread to do our work. It should be captured here. This is the main work of the program. 
         """
+        pass
+    elif lifecycle == 'preshutdown':
         pass
     elif lifecycle == 'shutdown':
         """
