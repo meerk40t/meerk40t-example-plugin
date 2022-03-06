@@ -6,9 +6,26 @@ def plugin(kernel, lifecycle):
         modules and modifiers to be used in meerk40t.
         """
 
+        # Example of writing an extension to plans. This can be added to the planner in console with "plan append hello"
+        def example():
+            yield "wait_finish"
+
+            def print_hello():
+                print("Hello World.")
+
+            yield "function", print_hello
+
+        kernel.register('plan/example', example)
+
+        # Example of writing an extension to the console commands. Type: "example" in console.
         @kernel.console_command('example', help="Says Hello World.")
-        def example_cmd(command, channel, _, args=tuple(), **kwargs):
+        def example_cmd(command, channel, _, **kwargs):
+            """
+            Example is part of the meerk40t example plugin this command only prints hello world. This part of the
+            command will show up in the extended help for "help example".
+            """
             channel(_('Hello World'))
+
     elif lifecycle == 'boot':
         """
         Do some persistent actions or start modules and modifiers. Register any scheduled tasks or threads that need
